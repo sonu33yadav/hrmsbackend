@@ -46,7 +46,7 @@ async def employee_summary():
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@employeeRouter.put("/employees/{id}")
+@employeeRouter.put("/updateEmployee/{id}")
 async def update_employee(id: int, emp: EmployeeUpdate):
     try:
         return await employeeController.updateEmployee(id, emp.dict(exclude_unset=True))
