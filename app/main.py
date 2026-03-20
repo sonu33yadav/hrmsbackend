@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from app.routers.employeeRouter import employeeRouter
 from app.routers.attendanceRouter import attendanceRouter
+from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI(
@@ -10,7 +11,7 @@ app = FastAPI(
 )
 
 app.add_middleware(
-    # CORSMiddleware,
+    CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
