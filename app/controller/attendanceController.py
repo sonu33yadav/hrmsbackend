@@ -11,6 +11,7 @@ async def getAttendance(date=None, employee_id=None):
             {
                 "id": row.id,
                 "employee_id": row.employee_id,
+                "employee_name": row.employee_name,
                 "date": str(row.date),
                 "status": row.status,
             }

@@ -15,8 +15,16 @@ class AttendanceModel:
 
     @staticmethod
     def get_all(date=None, employee_id=None):
+        from app.models.employee_model import Employee
+
         db = SessionLocal()
-        query = db.query(Attendance)
+        query = db.query(
+            Attendance.id,
+            Attendance.employee_id,
+            Attendance.date,
+            Attendance.status,
+            Employee.full_name.label("employee_name"),
+        ).join(Employee, Attendance.employee_id == Employee.id)
 
         if date:
             query = query.filter(Attendance.date == date)

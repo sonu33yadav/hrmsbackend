@@ -1,8 +1,9 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import Session
+from sqlalchemy import func
 from app.db import Base, SessionLocal
 from app.db import Base
-from app.models.attendance_model import Attendance
+from app.models.attendence_model import Attendance
 
 
 class Employee(Base):
