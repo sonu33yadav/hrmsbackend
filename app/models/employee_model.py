@@ -4,6 +4,9 @@ from sqlalchemy import func
 from app.db import Base, SessionLocal
 from app.db import Base
 from app.models.attendence_model import Attendance
+from datetime import date
+
+today = date.today().isoformat()
 
 
 class Employee(Base):
@@ -63,11 +66,15 @@ class EmployeeModel:
         total_employees = db.query(Employee).count()
 
         today_present = (
-            db.query(Attendance).filter(Attendance.status == "present").count()
+            db.query(Attendance)
+            .filter(Attendance.status == "present", Attendance.date == date.today())
+            .count()
         )
 
         today_absent = (
-            db.query(Attendance).filter(Attendance.status == "absent").count()
+            db.query(Attendance)
+            .filter(Attendance.status == "absent", Attendance.date == date.today())
+            .count()
         )
 
         department_count = db.query(
